@@ -1,0 +1,47 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    background: none;
+    outline: none;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+    -webkit-appearance: none;
+    font-family: "Raleway", sans-serif ;
+} 
+
+#gameBoardContainer
+{
+    width: 500px;
+    height: 500px;
+    background-color: rgb(17, 56, 87);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.gameBoardGrid
+{
+    background-color: rgb(65, 166, 199);
+    border-radius: 5px;
+    cursor:pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.gameBoardGrid:hover
+{
+    background-color: rgb(121, 200, 226);;
+}

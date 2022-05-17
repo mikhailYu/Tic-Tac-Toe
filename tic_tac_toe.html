@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    <div class="mainContainer">
+        <div class="header">
+            <h1>Tic Tac Toe</h1>
+            <button class="resetBtn" type="button">Reset</button>
+        </div>
+        <div id="gameBoardContainer"></div>
+        <div class="gameInfoContainer"></div>
+        <div class="playerContainer">
+            <div class="playerSelectContainer">
+                <button class="pvpBtn">2-Player</button>
+                <button class="CPUBtn">CPU-Player</button>
+                <button class="submitBtn">Submit</button>
+                <fieldset>
+                    <form id="playerNames" action="#">
+                        <div> 
+                            <p><label for="player1Name">Player 1 Name:</label></p>
+                            <input type="text" id="player1Name" name="player1Name" maxlength="12" required>
+                        </div>
+                        <div> 
+                            <p><label for="player2Name">Player 2 Name:</label></p>
+                            <input type="text" id="player2Name" name="player2Name" maxlength="12" required>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
