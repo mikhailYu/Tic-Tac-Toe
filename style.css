@@ -16,11 +16,84 @@
     font-family: "Raleway", sans-serif ;
 } 
 
+:root
+{
+    --side-color: rgb(2, 12, 19);
+    --main-color: rgb(40, 124, 184);
+}
+
+body
+{
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) 2fr minmax(200px, 1fr);
+    height: 100vh;
+}
+
+.sideContainerLeft
+{
+    grid-column: 1/2;
+    background-color: var(--side-color);
+}
+
+.sideContainerRight
+{
+    grid-column: 3/4;
+    background-color: var(--side-color);
+}
+
+.gameContainer
+{
+    grid-column: 2/3;
+    background-image: linear-gradient(rgb(85, 164, 221), rgb(0, 116, 199));
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 140px;
+
+}
+
+.resetBtn
+{
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    padding-top: 5px;
+}
+
+
+.resetBtn:hover
+{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+h1
+{
+    font-size: 80px;
+    font-weight: bold;
+    color: var(--side-color)
+}
+
+.btnContainer
+{
+    display: flex;
+    height: 50px;
+}
+
 #gameBoardContainer
 {
     width: 500px;
     height: 500px;
-    background-color: rgb(17, 56, 87);
+    background-color: rgb(5, 38, 65);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -28,11 +101,12 @@
     border-radius: 5px;
     padding: 5px;
     overflow: hidden;
+    filter: drop-shadow( 10px 10px 10px rgba(6, 15, 27, 0.404));
 }
 
 .gameBoardGrid
 {
-    background-color: rgb(65, 166, 199);
+    background-color: rgb(105, 173, 230);
     border-radius: 5px;
     cursor:pointer;
     display: flex;
@@ -43,5 +117,90 @@
 
 .gameBoardGrid:hover
 {
-    background-color: rgb(121, 200, 226);;
+    background-color: rgb(197, 227, 255);;
+}
+
+.gameBoardGrid-inactive
+{
+    background-color: rgb(68, 117, 149);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+
+.gameInfoContainer
+{
+    padding-top: 40px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    color: var(--side-color);
+}
+
+.btnContainer
+{
+    height: 100px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnContainer>button
+{
+    font-size: 20px;
+    border: 2px solid var(--side-color);
+    width: 150px;
+    height: 50px;
+    color: white;
+    border-radius: 20px;
+    background-color: rgb(0, 80, 155);
+}
+
+.btnContainer>button:hover
+{
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: rgb(21, 111, 195);
+}
+
+#playerNames
+{
+    font-size: 25px;
+    display: flex;
+    padding-top: 20px;
+}
+
+.formInput
+{
+    display: flex;
+    gap: 20px;
+}
+.formInput>div
+{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input
+{
+    border: 1px solid white;
+    color: var(--side-color);
+    background-color: rgb(128, 198, 255);
+    padding-left: 20px;
+    width: 200px;
+    height: 25px;
+    font-size: 20px;
+    border-radius: 20px;
+}
+
+input:focus
+{
+    background-color: rgb(157, 211, 255);
+    transform: scale(1.05);
 }

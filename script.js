@@ -37,12 +37,15 @@ const gameFlow = (() => {
     submitBtn.addEventListener("click", submitNames);
 
     function initialize() {
-        gameInfoCont.textContent = "Select Game Mode";
+        gameInfoCont.textContent = "Select a game mode:";
         pvpBtn.style.display = "block";
         CPUBtn.style.display = "block";
         playerNamesForm.style.display = "none";
         submitBtn.style.display = "none";
-        console.log("initialize")
+        gameBoardBase.style.display = "none";
+        gridSquaresObj = [];
+        turnOrder = 1;
+        
     };
 
     function gameModePvp() {
@@ -54,17 +57,28 @@ const gameFlow = (() => {
     }
 
     function gameModeCPU() {
-        console.log("sad")
+        gameInfoCont.textContent = "Coming soon...";
+        pvpBtn.style.display = "none";
+        CPUBtn.style.display = "none";
     }
 
     function submitNames() {
-        playerOne = player(playerOneName.value, 1);
-        playerTwo = player(playerTwoName.value, 2);
-    }
+        gameInfoCont.textContent = " ";
 
+        playerOneName.value.length == 0 ? 
+            playerOne = player("Player One", 1):
+                playerOne = player(playerOneName.value, 1);
 
-    
+        playerTwoName.value.length == 0 ? 
+            playerTwo = player("Player Two", 2):
+                playerTwo = player(playerTwoName.value, 2);
 
+        submitBtn.style.display = "none";
+        playerNamesForm.style.display = "none";
+
+        createGameBoard();
+
+    };
 
     
     function updateGameFlow(){
@@ -139,19 +153,22 @@ const gameFlow = (() => {
         checkWinCycleDiag(0, 4, 8);
         checkWinCycleDiag(2, 4, 6);
 
-        if(p1WinCounter >= 3 || p2WinCounter >= 3){
+        if(p1WinCounter < 3 || p2WinCounter < 3){
         checkTie();
         };
         
         function checkCounter(){
             if (p1WinCounter == 3 ){
-                alert(playerOne.playerName + " wins")
+                gameInfoCont.textContent = playerOne.playerName + " wins!";
                 p1WinCounter = 0, p2WinCounter = 0
+                stopGame();
             }else if (p2WinCounter == 3 ){
-                alert(playerTwo.playerName + " wins")
+                gameInfoCont.textContent = playerTwo.playerName + " wins!";
                 p1WinCounter = 0, p2WinCounter = 0
+                stopGame();
             }else if (isTie == 9){
-                alert("TIE")
+                gameInfoCont.textContent = "It's a tie!"
+                console.log("tie")
                 p1WinCounter = 0, p2WinCounter = 0
             }
 
@@ -159,50 +176,61 @@ const gameFlow = (() => {
         
     };
 
+    function stopGame() {
+
+        for(let i = 0; i < 9 ; i++){
+            gridSquaresObj[i].squareElement.classList.remove("gameBoardGrid");
+            gridSquaresObj[i].squareElement.classList.add("gameBoardGrid-inactive");
+        }
+    };
 
     // game board
+    
 
-    const gameBoard = (() => {  
+    const createGameBoard = () => {  
 
-        
-        const gridSquare = (indexNumber) => {
+        gameBoardBase.innerHTML = "";
 
-            let squareElement, posX, posY;
-            const markSquare = () => {
-                (turnOrder == 1) ? (gridSquaresObj[indexNumber].markSquare = "player1",
-                     squareElement.textContent = "X"):
-                (turnOrder == 2) ? (gridSquaresObj[indexNumber].markSquare = "player2", 
-                    squareElement.textContent = "O"): stopGame();
-                
-                updateGameFlow();
-            }
+        gameBoardBase.style.display = "grid";
 
-            squareElement = document.createElement("div");
-                
-                squareElement.classList.add("gameBoardGrid");
-                gameBoardBase.appendChild(squareElement);
+            const gridSquare = (indexNumber) => {
 
-                (indexNumber == 0 || indexNumber == 1 || indexNumber == 2) ? posY = "top":
-                (indexNumber == 3 || indexNumber == 4 || indexNumber == 5) ? posY = "mid":
-                posY = "bottom";
+                let squareElement, posX, posY;
+                const markSquare = () => {
+                    if (squareElement.classList.contains("gameBoardGrid")){
+                    (turnOrder == 1) ? (gridSquaresObj[indexNumber].markSquare = "player1",
+                        squareElement.textContent = "X"):
+                    (turnOrder == 2) ? (gridSquaresObj[indexNumber].markSquare = "player2", 
+                        squareElement.textContent = "O"): null;
+                    updateGameFlow();
+                    }
+                }
 
-                (indexNumber == 0 || indexNumber == 3 || indexNumber == 6) ? posX = "left":
-                (indexNumber == 1 || indexNumber == 4 || indexNumber == 7) ? posX = "mid":
-                posX = "right";
+                squareElement = document.createElement("div");
+                    
+                    squareElement.classList.add("gameBoardGrid");
+                    gameBoardBase.appendChild(squareElement);
 
-                squareElement.addEventListener("click", markSquare, {once: true});
+                    (indexNumber == 0 || indexNumber == 1 || indexNumber == 2) ? posY = "top":
+                    (indexNumber == 3 || indexNumber == 4 || indexNumber == 5) ? posY = "mid":
+                    posY = "bottom";
 
-            return {indexNumber, markSquare , posX, posY};
-        };
+                    (indexNumber == 0 || indexNumber == 3 || indexNumber == 6) ? posX = "left":
+                    (indexNumber == 1 || indexNumber == 4 || indexNumber == 7) ? posX = "mid":
+                    posX = "right";
 
-        for(let i = 0 ; i < 9 ; i++){
-        const square = gridSquare(i);
-            gridSquaresObj.push(square);
-        };
+                    squareElement.addEventListener("click", markSquare, {once: true});
 
-        console.log(gridSquaresObj);
+                return {indexNumber, markSquare , posX, posY, squareElement};
+            };
 
-    })();
-}
-)();
+            for(let i = 0 ; i < 9 ; i++){
+            const square = gridSquare(i);
+                gridSquaresObj.push(square);
+            };
+
+            console.log(gridSquaresObj);
+
+    };
+})();
 

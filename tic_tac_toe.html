@@ -9,34 +9,42 @@
 
 </head>
 <body>
-    <div class="mainContainer">
+    <div class="sideContainerLeft"></div>
+    <div class="gameContainer">
         <div class="header">
-            <h1>Tic Tac Toe</h1>
-            <button class="resetBtn" type="button">Reset</button>
+            <h1>Tic-Tac-Toe</h1>
+            <button class="resetBtn" type="button"><img src="./images/refresh.png" alt="Reset"></button>
         </div>
+
         <div id="gameBoardContainer"></div>
         <div class="gameInfoContainer"></div>
+        
         <div class="playerContainer">
             <div class="playerSelectContainer">
-                <button class="pvpBtn">2-Player</button>
-                <button class="CPUBtn">CPU-Player</button>
-                <button class="submitBtn">Submit</button>
+                <div class="btnContainer">
+                    <button class="pvpBtn">2-Player</button>
+                    <button class="CPUBtn">CPU-Player</button>
+                    <button class="submitBtn">Submit</button>
+                 </div>
                 <fieldset>
                     <form id="playerNames" action="#">
-                        <div> 
-                            <p><label for="player1Name">Player 1 Name:</label></p>
-                            <input type="text" id="player1Name" name="player1Name" maxlength="12" required>
-                        </div>
-                        <div> 
-                            <p><label for="player2Name">Player 2 Name:</label></p>
-                            <input type="text" id="player2Name" name="player2Name" maxlength="12" required>
+                        <div class="formInput">
+                            <div> 
+                                <p><label for="player1Name">Player 1 Name:</label></p>
+                                <input type="text" id="player1Name" name="player1Name" maxlength="15" required>
+                            </div>
+                            <div> 
+                                <p><label for="player2Name">Player 2 Name:</label></p>
+                                <input type="text" id="player2Name" name="player2Name" maxlength="15" required>
+                            </div>
                         </div>
                     </form>
                 </fieldset>
             </div>
-            
         </div>
     </div>
+
+    <div class="sideContainerRight"></div>
 
     <script src="script.js"></script>
 </body>
